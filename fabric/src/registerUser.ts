@@ -6,7 +6,7 @@ import { FileSystemWallet, Gateway, X509WalletMixin } from 'fabric-network';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const ccpPath = path.resolve(__dirname, '..', '..', '..', 'basic-network', 'connection.json');
+const ccpPath = path.resolve(__dirname, '..', '..', 'basic-network', 'connection.json');
 const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
 const ccp = JSON.parse(ccpJSON);
 
