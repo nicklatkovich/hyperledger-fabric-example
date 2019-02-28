@@ -2,7 +2,6 @@ import { FileSystemWallet, Gateway } from "fabric-network";
 import { Employee } from "employees-contract";
 import { readFile } from "fs-extra";
 import * as path from "path";
-import { inspect } from "util";
 
 const ccpPath = path.resolve(__dirname, '../../basic-network/connection.json');
 (async () => {
@@ -25,8 +24,7 @@ const ccpPath = path.resolve(__dirname, '../../basic-network/connection.json');
 		.then((res) => JSON.parse(res.toString()));
 	console.log('employess_count:', employeesCount)
 	const employees = await Promise.all(new Array(employeesCount).fill(null).map(async (_, i) => {
-		const indexHex = i.toString(16);
-		return await contract.evaluateTransaction('getEmployee', indexHex.padStart(Math.ceil(indexHex.length / 2)))
+		return await contract.evaluateTransaction('getEmployee', i.toString(10))
 			.then((res) => Employee.fromJSON(res));
 	}));
 	console.log('employees', employees);
