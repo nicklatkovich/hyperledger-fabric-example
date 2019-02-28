@@ -56,9 +56,10 @@ export default class Employee implements IEmployee {
 		return new Employee(firstName, secondName, age);
 	}
 
-	public static fromJSON(data: Buffer | string): Employee {
+	public static fromJSON(data: Buffer | string | IEmployee): Employee {
 		if (Buffer.isBuffer(data)) data = data.toString();
-		const { firstName, secondName, age } = JSON.parse(data) as IEmployee;
+		if (typeof data === 'string') data = JSON.parse(data.toString()) as IEmployee;
+		const { firstName, secondName, age } = data;
 		return new Employee(firstName, secondName, age);
 	}
 
