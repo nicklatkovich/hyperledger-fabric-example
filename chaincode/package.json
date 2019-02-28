@@ -1,7 +1,6 @@
 {
-	"name": "fabcar",
+	"name": "employees-contract",
 	"version": "1.0.0",
-	"description": "FabCar contract implemented in TypeScript",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
 	"engines": {

@@ -1,7 +1,6 @@
 {
 	"name": "employees-fabric",
 	"version": "1.0.0",
-	"description": "FabCar application implemented in TypeScript",
 	"engines": {
 		"node": ">=8",
 		"npm": ">=5"
