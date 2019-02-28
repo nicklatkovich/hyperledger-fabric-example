@@ -1,7 +1,9 @@
 import { FileSystemWallet, Gateway } from "fabric-network";
 import { Employee } from "employees-contract";
+import BN from "bignumber.js";
 import { readFile } from "fs-extra";
 import * as path from "path";
+import { IEmployee } from "employees-contract/dist/Employee";
 
 const ccpPath = path.resolve(__dirname, '../../basic-network/connection.json');
 (async () => {
@@ -20,14 +22,10 @@ const ccpPath = path.resolve(__dirname, '../../basic-network/connection.json');
 	await gateway.connect(ccp, { wallet, identity: 'user1', discovery: { enabled: false } });
 	const network = await gateway.getNetwork('mychannel');
 	const contract = network.getContract('employees');
-	const employeesCount: number = await contract.evaluateTransaction('getEmployeesCount')
-		.then((res) => JSON.parse(res.toString()));
-	console.log('employess_count:', employeesCount)
-	const employees = await Promise.all(new Array(employeesCount).fill(null).map(async (_, i) => {
-		return await contract.evaluateTransaction('getEmployee', i.toString(10))
-			.then((res) => Employee.fromJSON(res));
-	}));
-	console.log('employees', employees);
+	const employees = await contract.evaluateTransaction('getAllEmployees')
+		.then((res) => JSON.parse(res.toString()) as Array<IEmployee>)
+		.then((res) => res.map((json) => Employee.fromJSON(json)));
+	console.log(employees);
 	console.log('Transaction has been evaluated');
 })().then(() => process.exit(0)).catch((error) => {
 	console.error(`Failed to evaluate transaction: ${error}`);
