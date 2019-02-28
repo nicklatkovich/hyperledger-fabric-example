@@ -20,7 +20,9 @@ const ccpPath = path.resolve(__dirname, '../../basic-network/connection.json');
 	await gateway.connect(ccp, { wallet, identity: 'user1', discovery: { enabled: false } });
 	const network = await gateway.getNetwork('mychannel');
 	const contract = network.getContract('employees');
-	await contract.submitTransaction
+	const nick = new Employee('Nick', 'Latkovich', 22);
+	await contract.submitTransaction('createEmployee', JSON.stringify(nick));
+	await gateway.disconnect();
 })().then(() => process.exit(0)).catch((error) => {
 	console.error(`Failed to evaluate transaction: ${error}`);
 	process.exit(1);
