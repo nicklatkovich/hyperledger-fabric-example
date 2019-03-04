@@ -3,7 +3,7 @@ set -e
 # export FABRIC_CFG_PATH=${PWD}
 CHANNEL_NAME=mychannel
 
-rm -rf ./config/* && echo -n > ./config/.gitkeep
+rm -rf ./config/* && mkdir -p ./config
 rm -rf ./crypto-config
 
 cryptogen generate --config=./crypto-config.yaml

@@ -11,12 +11,8 @@ npm run build
 echo "Finished compiling TypeScript code into JavaScript"
 popd >> /dev/null
 
-pushd ./fabric >> /dev/null
-rm -rf ./hfc-key-store
-rm -rf ./wallet
-mkdir ./wallet
-echo -n > ./wallet/.gitkeep
-popd >> /dev/null
+rm -rf ./fabric/hfc-key-store
+rm -rf ./fabric/wallet/* && mkdir -p ./fabric/wallet
 
 ./start-network.sh
 

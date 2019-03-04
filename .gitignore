@@ -1,4 +1,12 @@
 .env
-config/*
-!config/.gitkeep
+config
 crypto-config
+
+chaincode/dist
+chaincode/node_modules
+chaincode/package-lock.json
+
+fabric/dist
+fabric/node_modules
+fabric/package-lock.json
+fabric/wallet
