@@ -3,8 +3,8 @@ set -e
 export MSYS_NO_PATHCONV=1
 starttime=$(date +%s)
 CC_SRC_PATH=/opt/chaincode
-echo Compiling TypeScript code into JavaScript ...
 
+echo Compiling TypeScript code into JavaScript ...
 pushd ../chaincode
 npm install
 npm run build
@@ -12,8 +12,11 @@ echo Finished compiling TypeScript code into JavaScript
 popd
 
 rm -rf ./hfc-key-store
+rm -rf ./wallet
+mkdir ./wallet
+echo -n > ./wallet/.gitkeep
 
-pushd ../basic-network
+pushd ../network
 ./start.sh
 docker-compose -f ./docker-compose.yml up -d cli
 MSP_PATH="CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/"

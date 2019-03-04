@@ -1,11 +1,10 @@
 import { FileSystemWallet, Gateway } from "fabric-network";
 import { Employee } from "employees-contract";
-import BN from "bignumber.js";
 import { readFile } from "fs-extra";
 import * as path from "path";
 import { IEmployee } from "employees-contract/dist/Employee";
 
-const ccpPath = path.resolve(__dirname, '../../basic-network/connection.json');
+const ccpPath = path.resolve(__dirname, '../../network/connection.json');
 (async () => {
 	const ccpJSON = await readFile(ccpPath, 'utf8');
 	const ccp = JSON.parse(ccpJSON);

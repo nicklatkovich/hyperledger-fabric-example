@@ -1,5 +1,5 @@
 {
-	"name": "basic-network",
+	"name": "network",
 	"version": "1.0.0",
 	"client": {
 		"organization": "Org1",
