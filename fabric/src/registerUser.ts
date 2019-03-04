@@ -31,7 +31,7 @@ const ccpPath = path.resolve(__dirname, '../../basic-network/connection.json');
 	);
 	const enrollment = await ca.enroll({ enrollmentID: 'user1', enrollmentSecret: secret });
 	const userIdentity = X509WalletMixin.createIdentity('Org1MSP', enrollment.certificate, enrollment.key.toBytes());
-	wallet.import('user1', userIdentity);
+	await wallet.import('user1', userIdentity);
 	console.log('Successfully registered and enrolled admin user "user1" and imported it into the wallet');
 })().then(() => process.exit(0)).catch((error) => {
 	console.error(`Failed to register user "user1": ${error}`);
