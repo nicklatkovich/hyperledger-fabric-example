@@ -1,4 +1,4 @@
-set -e
+set -ev
 
 export MSYS_NO_PATHCONV=1
 
@@ -16,7 +16,7 @@ rm -rf ./fabric/wallet/* && mkdir -p ./fabric/wallet
 
 ./start-network.sh
 
-docker-compose -f ./docker-compose.yml up -d cli
+docker-compose -f ./docker-compose.yaml up -d cli
 
 MSP_PATH="CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/"
 MSP_PATH="${MSP_PATH}org1.example.com/users/Admin@org1.example.com/msp"

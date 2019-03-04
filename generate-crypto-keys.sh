@@ -6,7 +6,7 @@ CHANNEL_NAME=mychannel
 rm -rf ./config/* && mkdir -p ./config
 rm -rf ./crypto-config
 
-cryptogen generate --config=./crypto-config.yaml
+cryptogen generate --config=./crypto-config.json
 if [ "$?" -ne 0 ]; then
 	echo "Failed to generate crypto material..."
 	exit 1
