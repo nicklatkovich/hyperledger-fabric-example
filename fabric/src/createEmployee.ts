@@ -3,7 +3,7 @@ import { Employee } from "employees-contract";
 import { readFile } from "fs-extra";
 import * as path from "path";
 
-const ccpPath = path.resolve(__dirname, '../../network/connection.json');
+const ccpPath = path.resolve(__dirname, '../../connection.json');
 (async () => {
 	const ccpJSON = await readFile(ccpPath, 'utf8');
 	const ccp = JSON.parse(ccpJSON);

@@ -1,11 +1,10 @@
-export PATH=$GOPATH/src/github.com/hyperledger/fabric/build/bin:${PWD}/../bin:${PWD}:$PATH
-export FABRIC_CFG_PATH=${PWD}
+set -e
+
+# export FABRIC_CFG_PATH=${PWD}
 CHANNEL_NAME=mychannel
 
-rm -rf ./config/*
-rm -rf ./crypto-config/*
-mkdir ./config
-echo -n > ./config/.gitkeep
+rm -rf ./config/* && echo -n > ./config/.gitkeep
+rm -rf ./crypto-config
 
 cryptogen generate --config=./crypto-config.yaml
 if [ "$?" -ne 0 ]; then
@@ -25,7 +24,12 @@ if [ "$?" -ne 0 ]; then
 	exit 1
 fi
 
-configtxgen -profile OneOrgChannel -outputAnchorPeersUpdate ./config/Org1MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
+configtxgen \
+	-profile OneOrgChannel \
+	-outputAnchorPeersUpdate ./config/Org1MSPanchors.tx \
+	-channelID $CHANNEL_NAME \
+	-asOrg Org1MSP
+
 if [ "$?" -ne 0 ]; then
 	echo "Failed to generate anchor peer update for Org1MSP..."
 	exit 1

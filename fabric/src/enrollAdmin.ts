@@ -3,7 +3,7 @@ import { FileSystemWallet, X509WalletMixin } from "fabric-network";
 import { readFile } from "fs-extra";
 import * as path from "path";
 
-const ccpPath = path.resolve(__dirname, '../../network/connection.json');
+const ccpPath = path.resolve(__dirname, '../../connection.json');
 
 (async () => {
 	const ccp = await readFile(ccpPath, 'utf8').then((res) => JSON.parse(res));

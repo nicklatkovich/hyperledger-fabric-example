@@ -4,8 +4,7 @@
 
 1. Generate new crypto keys:
 ```
-cd ./network
-./generate.sh
+./generate-crypto-keys.sh
 ```
 2. Create `.env` file:
 ```
@@ -18,8 +17,7 @@ ls -alF ./crypto-config/peerOrganizations/org1.example.com/ca/ | grep "[0-9a-f]*
 ```
 4. Start fabric:
 ```
-cd ../fabric
-./startFabric.sh
+./start-fabric.sh
 ```
 5. Check, that ca-server is started succesful:
 ```
@@ -30,6 +28,7 @@ Status should be `Up`
 ## Create wallets
 1. Install fabric dependencies
 ```
+cd ./fabric
 npm i
 ```
 2. Enroll admin
