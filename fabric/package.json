@@ -7,7 +7,10 @@
 	},
 	"scripts": {
 		"build": "tsc",
-		"prepublishOnly": "npm run build"
+		"prepublishOnly": "npm run build",
+		"dropContainer": "docker rm -f dev-peer0.org1.example.com-employees-1.0",
+		"runNetwork": "cd .. && bash start-fabric.sh && cd fabric",
+		"test": "npm run dropContainer && npm run runNetwork && mocha -r ts-node/register test/index.test.ts --exit"
 	},
 	"author": "PixelPlex",
 	"license": "UNLICENSED",
@@ -20,7 +23,9 @@
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^5.0.5",
+		"@types/mocha": "^5.2.6",
 		"@types/node": "^10.12.10",
+		"mocha": "^6.0.2",
 		"ts-node": "^7.0.1",
 		"typescript": "^3.1.6"
 	}
